@@ -4,10 +4,19 @@ import model.BaseModel;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 public abstract class BaseRepository<T extends BaseModel> {
     protected final ArrayList<T> data = new ArrayList<>();
+    public Optional<T> findById(UUID id){
+        for (T t : data) {
+            if(Objects.equals(t.getId(),id)){
+                return Optional.of(t);
+            }
+        }
+        return Optional.empty();
+    }
     public boolean add(T t){
         data.add(t);
         return true;

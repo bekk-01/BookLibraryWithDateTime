@@ -1,10 +1,13 @@
 package service;
 
+import exception.DataNotFoundException;
 import model.BaseModel;
 import repository.BaseRepository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 public abstract class BaseService<T extends BaseModel,R extends BaseRepository<T>> {
     protected R repository;
@@ -29,5 +32,10 @@ public abstract class BaseService<T extends BaseModel,R extends BaseRepository<T
     }
     public ArrayList<T> getActive(){
         return repository.getActive();
+    }
+    public T findById(UUID id) throws DataNotFoundException {
+        return repository.findById(id).orElseThrow(
+                () -> new DataNotFoundException("Data not found ")
+        );
     }
 }
