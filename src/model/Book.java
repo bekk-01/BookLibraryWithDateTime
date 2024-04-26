@@ -3,12 +3,13 @@ package model;
 import java.time.LocalDate;
 
 public class Book extends BaseModel{
+    public static  Integer code1 = 0;
     private String title;
     private String author;
     private String numberOfPages;
     private LocalDate publishDate;
     private Double amount;
-    private String code;
+    private Integer code = code1++;
     private LocalDate writtenYear;
     private Double dailyRentCharge;
 
@@ -72,11 +73,11 @@ public class Book extends BaseModel{
         this.writtenYear = writtenYear;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

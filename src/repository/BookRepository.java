@@ -9,4 +9,5 @@ public class BookRepository extends BaseRepository<Book> {
     private BookRepository(){
 
     }
+
 }
