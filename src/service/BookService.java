@@ -1,7 +1,7 @@
 package service;
 
+import exception.DataNotFoundException;
 import model.Book;
-import repository.BaseRepository;
 import repository.BookRepository;
 
 import java.util.ArrayList;
@@ -32,5 +32,10 @@ public class BookService extends BaseService<Book, BookRepository> {
     }
     public ArrayList<Book> searchByWrittenYear(String search){
         return repository.searchByWrittenYear(search);
+    }
+    public Book getByCode(Integer bookCode) throws DataNotFoundException {
+        return repository.getByCode(bookCode).orElseThrow(
+                () -> new DataNotFoundException("Data not found")
+        );
     }
 }

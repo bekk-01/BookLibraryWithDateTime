@@ -8,13 +8,13 @@ public class Book extends BaseModel{
     private String author;
     private String numberOfPages;
     private LocalDate publishDate;
-    private Double amount;
+    private Integer amount;
     private Integer code = code1++;
     private LocalDate writtenYear;
     private Double dailyRentCharge;
 
 
-    public Book(String title, String author, String numberOfPages, LocalDate publishDate, Double amount,
+    public Book(String title, String author, String numberOfPages, LocalDate publishDate, Integer amount,
                 LocalDate writtenYear, Double dailyRentCharge) {
         this.title = title;
         this.author = author;
@@ -25,11 +25,11 @@ public class Book extends BaseModel{
         this.dailyRentCharge = dailyRentCharge;
     }
 
-    public Double getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -87,5 +87,18 @@ public class Book extends BaseModel{
 
     public void setDailyRentCharge(Double dailyRentCharge) {
         this.dailyRentCharge = dailyRentCharge;
+    }
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", numberOfPages='" + numberOfPages + '\'' +
+                ", publishDate=" + publishDate +
+                ", amount=" + amount +
+                ", code=" + code +
+                ", writtenYear=" + writtenYear +
+                ", dailyRentCharge=" + dailyRentCharge +
+                '}';
     }
 }
