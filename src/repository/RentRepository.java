@@ -2,7 +2,7 @@ package repository;
 
 import model.Rent;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class RentRepository extends BaseRepository<Rent>{
     private static final RentRepository rentRepository = new RentRepository();
@@ -12,5 +12,4 @@ public class RentRepository extends BaseRepository<Rent>{
     private RentRepository(){
 
     }
-
 }
