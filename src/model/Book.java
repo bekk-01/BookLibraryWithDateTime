@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Book extends BaseModel{
-    public static  Integer code1 = 0;
+    public static  Integer code1 = 1000;
     private String title;
     private String author;
     private String numberOfPages;

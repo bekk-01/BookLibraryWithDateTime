@@ -12,6 +12,12 @@ public class Rent extends BaseModel{
     private LocalDate closedDate;
     private Double totalPrice;
     private Double fine;
+    public Rent(String phoneNumber,String name,UUID bookId,LocalDate dueDate){
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.bookId = bookId;
+        this.dueDate = dueDate;
+    }
 
     public Rent(String phoneNumber, String name, UUID bookId, boolean isOpen,
                 LocalDate dueDate, LocalDate closedDate, Double totalPrice, Double fine) {
