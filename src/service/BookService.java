@@ -4,9 +4,7 @@ import exception.DataNotFoundException;
 import model.Book;
 import repository.BookRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class BookService extends BaseService<Book, BookRepository> {
     private static final BookService bookService = new BookService();
@@ -37,5 +35,11 @@ public class BookService extends BaseService<Book, BookRepository> {
         return repository.getByCode(bookCode).orElseThrow(
                 () -> new DataNotFoundException("Data not found")
         );
+    }
+
+    public Book getById(UUID bookId) throws DataNotFoundException{
+        return repository.getById(bookId).orElseThrow(
+                () -> new DataNotFoundException("Data not found")
+       );
     }
 }

@@ -38,4 +38,7 @@ public abstract class BaseService<T extends BaseModel,R extends BaseRepository<T
                 () -> new DataNotFoundException("Data not found ")
         );
     }
+    public ArrayList<T> getAll(){
+        return repository.getAll();
+    }
 }
