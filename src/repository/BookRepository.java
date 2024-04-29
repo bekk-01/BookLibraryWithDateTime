@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 public class BookRepository extends BaseRepository<Book> {
     private static final BookRepository bookRepository = new BookRepository();
@@ -55,6 +56,16 @@ public class BookRepository extends BaseRepository<Book> {
         for (Book book : getActive()) {
             if(Objects.equals(book.getCode(), bookCode)){
                 return Optional.of(book);
+            }
+        }
+        return Optional.empty();
+    }
+
+
+    public Optional<Book> getById(UUID bookId) {
+        for (Book datum : data) {
+            if(Objects.equals(datum.getId(),bookId)){
+                return Optional.of(datum);
             }
         }
         return Optional.empty();
