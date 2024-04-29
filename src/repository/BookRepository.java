@@ -5,6 +5,7 @@ import model.Book;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 public class BookRepository extends BaseRepository<Book> {
@@ -52,7 +53,7 @@ public class BookRepository extends BaseRepository<Book> {
     }
     public Optional<Book> getByCode(Integer bookCode){
         for (Book book : getActive()) {
-            if(book.getCode() == bookCode){
+            if(Objects.equals(book.getCode(), bookCode)){
                 return Optional.of(book);
             }
         }

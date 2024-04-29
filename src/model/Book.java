@@ -12,8 +12,6 @@ public class Book extends BaseModel{
     private Integer code = code1++;
     private LocalDate writtenYear;
     private Double dailyRentCharge;
-
-
     public Book(String title, String author, String numberOfPages, LocalDate publishDate, Integer amount,
                 LocalDate writtenYear, Double dailyRentCharge) {
         this.title = title;
