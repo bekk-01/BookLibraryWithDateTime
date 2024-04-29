@@ -94,4 +94,14 @@ public class Rent extends BaseModel{
     public void setFine(Double fine) {
         this.fine = fine;
     }
+
+    @Override
+    public String toString() {
+        return "Rent{ "+" name=" + name +
+                ", dueDate=" + dueDate +
+                ", closedDate=" + closedDate +
+                ", totalPrice=" + totalPrice +
+                ", fine=" + fine +
+                '}';
+    }
 }

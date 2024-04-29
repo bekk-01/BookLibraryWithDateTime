@@ -19,7 +19,7 @@ public class BookController {
                 2. Search by title
                 3. search by publish date
                 4. search by written year
-                5. Exit
+                0. Exit
                 """;
         System.out.println(menu);
         String command = scanStr.nextLine();
@@ -47,9 +47,10 @@ public class BookController {
             while (bookIterator.hasNext()){
                 System.out.println(i++ + ". "+ bookIterator.next());
             }
-        }catch (DateTimeParseException | InputMismatchException e){
+        }catch (DateTimeParseException | InputMismatchException | NumberFormatException e){
             System.out.println(e.getMessage());
         }
+        bookLibrary();
     }
 
     private static void searchByPublishDate() {
@@ -69,6 +70,7 @@ public class BookController {
         }catch (DateTimeParseException | InputMismatchException e){
             System.out.println(e.getMessage());
         }
+        bookLibrary();
     }
 
     private static void searchByTitle() {
@@ -156,12 +158,14 @@ public class BookController {
         }
     }
 
-    private static ArrayList<Book> read() {
+    public static ArrayList<Book> read() {
         ArrayList<Book> list = new ArrayList<>();
         int i =1;
         for (Book book : bookService.getActive()) {
-            System.out.println(i++ + ". " + book);
-            list.add(book);
+            if(book.getAmount() != 0) {
+                System.out.println(i++ + ". " + book);
+                list.add(book);
+            }
         }
         return list;
     }
