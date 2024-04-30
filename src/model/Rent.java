@@ -20,7 +20,7 @@ public class Rent extends BaseModel{
     }
 
     public Rent(String phoneNumber, String name, UUID bookId, boolean isOpen,
-                LocalDate dueDate, LocalDate closedDate, Double totalPrice, Double fine) {
+                LocalDate dueDate, LocalDate closedDate,Double totalPrice, Double fine) {
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.bookId = bookId;
