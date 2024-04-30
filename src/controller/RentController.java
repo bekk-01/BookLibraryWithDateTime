@@ -32,7 +32,7 @@ public class RentController {
                     	2. Top 3 Readers of past 30 days
                     	3. Top 3 of all time
                     	4. Show open/closed rents in period
-                    	5. Exit
+                    	0. Exit
                     """;
             System.out.println(textBlock);
             String choice = scanStr.nextLine();
@@ -41,7 +41,7 @@ public class RentController {
                 case "2" -> top3ReadersOfPast30daysUsers();
                 case "3" -> topThreeOfAllTimeUsers();
                 case "4" -> showOpenClosedRentsInPeriod();
-                case "5" -> rentBook();
+                case "0" -> rentBook();
                 default -> extraFunctionsAboutRent();
             }
         }
@@ -52,14 +52,14 @@ public class RentController {
         int i = 1;
         for (Rent rent : rentService.getAll()) {
             if(rent.isOpen()) {
-                System.out.println(i++ + ". " + rent);
+                System.out.println(i++ + ". " + rent.getPhoneNumber());
             }
         }
         System.out.println("\t\tClosed rents");
         int j = 1;
         for (Rent rent : rentService.getAll()) {
             if(!rent.isOpen()){
-                System.out.println(i++ + ". " + rent);
+                System.out.println(i++ + ". " + rent.getPhoneNumber());
             }
         }
     }
