@@ -52,14 +52,14 @@ public class RentController {
         int i = 1;
         for (Rent rent : rentService.getAll()) {
             if(rent.isOpen()) {
-                System.out.println(i++ + ". " + rent.getPhoneNumber());
+                System.out.println(i++ + ". " + rent);
             }
         }
         System.out.println("\t\tClosed rents");
         int j = 1;
         for (Rent rent : rentService.getAll()) {
             if(!rent.isOpen()){
-                System.out.println(i++ + ". " + rent.getPhoneNumber());
+                System.out.println(i++ + ". " + rent);
             }
         }
     }
@@ -134,7 +134,7 @@ public class RentController {
             for (Rent rent : rentService.getActive()) {
                 if (Objects.equals(rent.getPhoneNumber(), phoneNumber) && rent.isOpen()) {
                     rents.add(rent);
-                    System.out.println(i++ + ". " +"Name = " + rent.getName() + "dueData = " + rent.getDueDate());
+                    System.out.println(i++ + ". " + "Name: " +rent.getName()+ " | " + "Title: " +bookService.findById(rent.getBookId()).getTitle());
                 }
             }
             if (rents.isEmpty()) {
@@ -143,16 +143,19 @@ public class RentController {
             System.out.print("Enter choice one: ");
             int choice = scanInt.nextInt() - 1;
             LocalDate now = LocalDate.now();
-            int fine = 0;
+            double fine = 0D;
             if (now.isAfter(rents.get(choice).getDueDate())) {
                 int i1 = now.getDayOfMonth() - rents.get(choice).getDueDate().getDayOfMonth();
                 fine = i1 * 100;
+
             }
 
             rents.get(choice).setOpen(false);
+            rents.get(choice).setFine(fine);
+            rents.get(choice).setClosedDate(LocalDate.now());
             Book byId = bookService.findById(rents.get(choice).getBookId());
             byId.setAmount(byId.getAmount() + 1);
-            System.out.println("Rent closed | " + "your penalty-> " + fine);
+            System.out.println(rents);
             rentBook();
         } catch (InputMismatchException | DataNotFoundException e) {
             System.out.println(e.getMessage());
@@ -166,6 +169,8 @@ public class RentController {
             System.out.println(Message.EMPTY);
             rentBook();
         }
+        System.out.print("Enter code of book: ");
+        Integer code = scanInt.nextInt();
         try {
             System.out.print("Enter phone number: ");
             String phone = scanStr.nextLine();
@@ -181,8 +186,7 @@ public class RentController {
             String date = scanStr.nextLine();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(date, formatter);
-            System.out.print("Enter code of book: ");
-            Integer code = scanInt.nextInt();
+
             Book byCode = bookService.getByCode(code);
             rentService.add(new Rent(phone, name, byCode.getId(), localDate));
             byCode.setAmount(byCode.getAmount() - 1);
